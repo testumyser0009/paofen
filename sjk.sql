@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.40, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.7.26, for Linux (x86_64)
 --
--- Host: localhost    Database: paofen
+-- Host: 127.0.0.1    Database: www.paofen.com
 -- ------------------------------------------------------
--- Server version	5.5.40
+-- Server version	5.6.40-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -64,7 +64,7 @@ CREATE TABLE `ysk_bankcard` (
   `banknum` varchar(225) NOT NULL COMMENT '银行卡号',
   `addtime` varchar(225) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='银行卡管理';
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='银行卡管理';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +73,7 @@ CREATE TABLE `ysk_bankcard` (
 
 LOCK TABLES `ysk_bankcard` WRITE;
 /*!40000 ALTER TABLE `ysk_bankcard` DISABLE KEYS */;
-INSERT INTO `ysk_bankcard` VALUES (4,1,'张学友','建设银行','62284812345698745678','1552018926'),(2,1,'张学友','工商银行','6228481234567895566','1552017910'),(3,1,'张学友','长沙银行','62284845648945164659','1552018162'),(5,1,'张学友','农业银行','622848123456785555','1552018956'),(6,1,'刘德华','中国人民银行','6228481234567895544564','1552113144'),(8,6,'小三子','中国银行','622848123456789258369','1552577950'),(9,5,'老实人','天地银行','111111','1553022819'),(10,5,'老实人','地天银行','5151515','1553022840'),(11,7,'159','中国银行','159159','1553025654'),(12,3,'WE QWEQ WE','aWEQQ','QWE QWEQ','1553274062');
+INSERT INTO `ysk_bankcard` VALUES (13,1,'13323','dddd','8888889900022','1567317799'),(14,10,'ccccccccc','cccccccccccc','ccccccccccccc','1567319919'),(8,6,'小三子','中国银行','622848123456789258369','1552577950'),(9,5,'老实人','天地银行','111111','1553022819'),(10,5,'老实人','地天银行','5151515','1553022840'),(11,7,'159','中国银行','159159','1553025654'),(12,3,'WE QWEQ WE','aWEQQ','QWE QWEQ','1553274062');
 /*!40000 ALTER TABLE `ysk_bankcard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,34 +141,130 @@ INSERT INTO `ysk_config` VALUES (1,'站点开关','TOGGLE_WEB_SITE','1',3,'0','0
 UNLOCK TABLES;
 
 --
--- Table structure for table `ysk_ewm`
+-- Table structure for table `ysk_gemapay_code`
 --
 
-DROP TABLE IF EXISTS `ysk_ewm`;
+DROP TABLE IF EXISTS `ysk_gemapay_code`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ysk_ewm` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '记录id',
-  `uid` int(11) NOT NULL COMMENT '用户ID',
-  `ewm_class` int(11) NOT NULL COMMENT '二维码类型',
-  `ewm_url` varchar(225) NOT NULL COMMENT '二维码地址',
-  `ewm_price` float(10,2) NOT NULL COMMENT '二维码收款金额',
-  `ewm_acc` varchar(225) NOT NULL COMMENT '二维码账号',
-  `uaccount` varchar(225) NOT NULL COMMENT '用户账号',
-  `uname` varchar(225) NOT NULL COMMENT '用户名',
-  `addtime` varchar(225) NOT NULL COMMENT '添加时间',
+CREATE TABLE `ysk_gemapay_code` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL COMMENT '属于哪个用户',
+  `type` int(1) DEFAULT NULL COMMENT '1表示微信，２表示支付宝，３表示云散付，４表示百付通',
+  `qr_image` varchar(255) DEFAULT NULL COMMENT '二维码地址',
+  `last_used_time` int(11) DEFAULT NULL,
+  `status` int(1) DEFAULT '0' COMMENT '是否正常使用　０表示正常，１表示禁用',
+  `last_online_time` int(11) DEFAULT NULL COMMENT '最后一次在线的时间',
+  `pay_status` int(11) DEFAULT NULL COMMENT '０表示未使用，１表示使用占用中',
+  `limit_money` decimal(10,2) DEFAULT NULL,
+  `paying_num` int(10) DEFAULT NULL COMMENT '正在支付的数量',
+  `user_name` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COMMENT='二维码管理';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ysk_ewm`
+-- Dumping data for table `ysk_gemapay_code`
 --
 
-LOCK TABLES `ysk_ewm` WRITE;
-/*!40000 ALTER TABLE `ysk_ewm` DISABLE KEYS */;
-INSERT INTO `ysk_ewm` VALUES (12,1,1,'https://img.bukanba.com/ekcms/20190314/4bb33167808b07dd.png',300.00,'13666666666','13888888888','九星耀世','1552575525'),(11,1,1,'https://img.bukanba.com/ekcms/20190314/8f13a2f8a8407179.png',200.00,'13888888888','13888888888','九星耀世','1552575497'),(3,1,2,'https://img.bukanba.com/ekcms/20190309/4bb33167808b07dd.png',100000.00,'13888888888','13888888888','九星耀世','1552123575'),(4,1,1,'https://img.bukanba.com/ekcms/20190309/8f13a2f8a8407179.png',100.00,'13888888888','13888888888','九星耀世','1552123658'),(10,1,3,'https://img.bukanba.com/ekcms/20190309/6e605d96720537d7.jpg',898989.00,'13333333333','13888888888','九星耀世','1552129995'),(6,1,2,'https://img.bukanba.com/ekcms/20190309/52ad2222f9ef7f43.png',5000.00,'13888888888','13888888888','九星耀世','1552123819'),(13,6,1,'https://img.bukanba.com/ekcms/20190314/4bb33167808b07dd.png',100.00,'13222222222','13222222222','小三','1552578045'),(14,6,1,'https://img.bukanba.com/ekcms/20190314/52ad2222f9ef7f43.png',200.00,'13222222222','13222222222','小三','1552578063'),(15,6,1,'https://img.bukanba.com/ekcms/20190314/8f13a2f8a8407179.png',300.00,'13222222222','13222222222','小三','1552578082'),(16,6,1,'https://img.bukanba.com/ekcms/20190314/8f13a2f8a8407179.png',500.00,'13222222222','13222222222','小三','1552578096'),(17,6,1,'https://img.bukanba.com/ekcms/20190314/52ad2222f9ef7f43.png',1000.00,'13222222222','13222222222','小三','1552578112'),(18,6,2,'https://img.bukanba.com/ekcms/20190314/8f13a2f8a8407179.png',100.00,'13222222222','13222222222','小三','1552578128'),(19,6,2,'https://img.bukanba.com/ekcms/20190314/4bb33167808b07dd.png',200.00,'13222222222','13222222222','小三','1552578150'),(20,6,3,'https://img.bukanba.com/ekcms/20190314/4bb33167808b07dd.png',100.00,'13222222222','13222222222','小三','1552578169'),(21,5,1,'https://img.bukanba.com/ekcms/20190320/63a825c894bcfee8.png',100.00,'1','13333333333','小四','1553021888'),(23,5,1,'https://img.bukanba.com/ekcms/20190320/0fb233d0f8414665.png',200.00,'123456','13333333333','小四','1553023345'),(24,7,1,'https://img.bukanba.com/ekcms/20190320/63a825c894bcfee8.png',100.00,'111','15936999999','laoshiren','1553025599'),(33,8,1,'https://img.bukanba.com/ekcms/20190323/fe2e9c4ba4f3f343.png',1000.00,'1','14725836999','laoshiren1','1553277306'),(32,8,1,'https://img.bukanba.com/ekcms/20190323/fe2e9c4ba4f3f343.png',6600.00,'123','14725836999','laoshiren1','1553277245'),(28,3,1,'https://img.bukanba.com/ekcms/20190323/f08e688a2f9fb771.gif',20.00,'123456','13777777777','小七','1553275727');
-/*!40000 ALTER TABLE `ysk_ewm` ENABLE KEYS */;
+LOCK TABLES `ysk_gemapay_code` WRITE;
+/*!40000 ALTER TABLE `ysk_gemapay_code` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ysk_gemapay_code` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ysk_gemapay_code_money_paying`
+--
+
+DROP TABLE IF EXISTS `ysk_gemapay_code_money_paying`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ysk_gemapay_code_money_paying` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code_id` int(11) DEFAULT NULL COMMENT '哪个账户',
+  `money` decimal(10,2) DEFAULT NULL COMMENT '实际所需要支付的价格',
+  `paying_num` int(11) DEFAULT NULL COMMENT '正在支付的个数',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ysk_gemapay_code_money_paying`
+--
+
+LOCK TABLES `ysk_gemapay_code_money_paying` WRITE;
+/*!40000 ALTER TABLE `ysk_gemapay_code_money_paying` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ysk_gemapay_code_money_paying` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ysk_gemapay_collect_order`
+--
+
+DROP TABLE IF EXISTS `ysk_gemapay_collect_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ysk_gemapay_collect_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_no` varchar(200) NOT NULL COMMENT '订单号',
+  `code_id` int(11) DEFAULT NULL COMMENT '哪个账户生成的',
+  `order_paytime` int(11) NOT NULL COMMENT '订单支付时间',
+  `order_payprice` varchar(45) DEFAULT NULL COMMENT '订单价格',
+  `create_time` varchar(45) NOT NULL COMMENT '创建时间',
+  `pay_order_no` varchar(200) DEFAULT NULL COMMENT '支付的订单号',
+  `status` int(10) NOT NULL COMMENT '状态１表示成功匹配完成订单,2 表示没匹配到订单导致订单丢失',
+  `error_possible_pay_no` varchar(300) DEFAULT NULL COMMENT '如果出现一笔没匹配到的订单，最有可能是哪笔订单',
+  PRIMARY KEY (`id`),
+  KEY `order_no` (`order_no`,`code_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ysk_gemapay_collect_order`
+--
+
+LOCK TABLES `ysk_gemapay_collect_order` WRITE;
+/*!40000 ALTER TABLE `ysk_gemapay_collect_order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ysk_gemapay_collect_order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ysk_gemapay_order`
+--
+
+DROP TABLE IF EXISTS `ysk_gemapay_order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ysk_gemapay_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `add_time` int(10) DEFAULT NULL,
+  `order_no` varchar(100) DEFAULT NULL COMMENT '订单号',
+  `order_price` decimal(10,2) DEFAULT NULL COMMENT '订单价格',
+  `status` int(11) DEFAULT '0',
+  `gema_userid` int(11) DEFAULT '0' COMMENT '所属用户',
+  `qr_image` varchar(100) DEFAULT NULL,
+  `pay_time` int(10) DEFAULT NULL COMMENT '支付时间',
+  `code_id` int(10) DEFAULT NULL,
+  `order_pay_price` decimal(10,2) DEFAULT NULL COMMENT '实际支付价格',
+  `gema_username` varchar(45) DEFAULT NULL COMMENT '个码用户名',
+  `note` varchar(45) DEFAULT NULL,
+  `out_trade_no` varchar(200) DEFAULT NULL,
+  `code_type` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `orderNum_UNIQUE` (`order_no`),
+  KEY `addtime` (`add_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ysk_gemapay_order`
+--
+
+LOCK TABLES `ysk_gemapay_order` WRITE;
+/*!40000 ALTER TABLE `ysk_gemapay_order` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ysk_gemapay_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -297,35 +393,6 @@ LOCK TABLES `ysk_notice` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ysk_qrcode`
---
-
-DROP TABLE IF EXISTS `ysk_qrcode`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ysk_qrcode` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `uid` int(11) NOT NULL COMMENT '会员ID',
-  `uname` varchar(225) NOT NULL COMMENT '会员名称',
-  `code_class` int(2) NOT NULL COMMENT '二维码类型1支付宝2微信3银行卡',
-  `code_url` varchar(225) NOT NULL COMMENT '二维码图片地址',
-  `uaccount` varchar(225) NOT NULL COMMENT '会员账号',
-  `code_acc` varchar(225) NOT NULL COMMENT '二维码账号，如支付宝账号',
-  `addtime` varchar(225) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='二维码管理';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ysk_qrcode`
---
-
-LOCK TABLES `ysk_qrcode` WRITE;
-/*!40000 ALTER TABLE `ysk_qrcode` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ysk_qrcode` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ysk_recharge`
 --
 
@@ -354,39 +421,6 @@ LOCK TABLES `ysk_recharge` WRITE;
 /*!40000 ALTER TABLE `ysk_recharge` DISABLE KEYS */;
 INSERT INTO `ysk_recharge` VALUES (2,1,'13888888888','张学友',2000.00,2,'1552036575',3,'123456'),(3,1,'13888888888','张学友',3000.00,3,'1552036603',3,'123456'),(4,1,'13888888888','孙悟空',5000.00,1,'1552116267',3,'2323'),(9,6,'13222222222','小三子',100.00,2,'1552578253',3,''),(8,6,'13222222222','小三子',10000.00,1,'1552578224',3,''),(6,1,'13888888888','小猪',6000.00,2,'1552116626',3,'2313223'),(7,1,'13888888888','小沙',9000.00,3,'1552117027',3,'123456'),(10,5,'13333333333','13333333333',10000.00,3,'1553022448',3,'10000'),(11,7,'15936999999','123',10000.00,3,'1553025546',3,'111'),(12,7,'13888888888','123456',10000.00,3,'1553078844',3,'111'),(13,8,'14725836999','111',10000.00,3,'1553079229',3,'10'),(14,3,'13777777777','阿萨德',100000.00,3,'1553274235',3,'撒旦');
 /*!40000 ALTER TABLE `ysk_recharge` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ysk_roborder`
---
-
-DROP TABLE IF EXISTS `ysk_roborder`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ysk_roborder` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `class` int(2) NOT NULL COMMENT '收款类型',
-  `price` float(10,2) NOT NULL COMMENT '收款金额',
-  `addtime` varchar(225) NOT NULL COMMENT '添加时间',
-  `status` int(2) NOT NULL COMMENT '订单状态',
-  `uid` int(11) NOT NULL COMMENT '匹配用户ID',
-  `uname` varchar(225) NOT NULL COMMENT '匹配用户名称',
-  `umoney` float(10,2) NOT NULL COMMENT '匹配用户余额',
-  `pipeitime` varchar(225) NOT NULL COMMENT '匹配时间',
-  `finishtime` varchar(225) NOT NULL COMMENT '完成时间',
-  `ordernum` varchar(225) NOT NULL COMMENT '订单号',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='抢单表';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ysk_roborder`
---
-
-LOCK TABLES `ysk_roborder` WRITE;
-/*!40000 ALTER TABLE `ysk_roborder` DISABLE KEYS */;
-INSERT INTO `ysk_roborder` VALUES (17,1,1000.00,'1552568470',3,6,'小三子',20200.00,'1552578995','1552579076','N684134772211'),(16,1,400.00,'1552568463',1,0,'',0.00,'','','N315763152251'),(15,1,300.00,'1552568455',3,1,'ecolee',8723.00,'1552576434','1552577228','N559784444438'),(23,1,100.00,'1552568947',3,1,'ecolee',8862.00,'1552569219','1552571384','N788867003859'),(13,1,200.00,'1552568428',3,6,'小三子',19510.00,'1552579204','1552579224','N687737383241'),(18,2,1000.00,'1552568482',1,0,'',0.00,'','','N753542087095'),(19,2,100.00,'1552568494',1,0,'',0.00,'','','N801289227537'),(20,2,300.00,'1552568517',1,0,'',0.00,'','','N954565390474'),(21,2,500.00,'1552568527',1,0,'',0.00,'','','N782004170512'),(24,2,100.00,'1552568955',3,6,'小三子',19162.00,'1552580505','1552580527','N337086662806'),(22,1,100.00,'1552568940',3,1,'ecolee',8931.00,'1552568979','1552569150','N590250994747'),(27,1,100.00,'1552576307',3,1,'ecolee',8793.00,'1552576307','1552576415','N798089240081'),(28,1,100.00,'1552579510',3,6,'小三子',19372.00,'1552579510','1552579527','N512031793192'),(29,1,100.00,'1552580130',3,6,'小三子',19302.00,'1552580130','1552580141','N732729092750'),(30,1,100.00,'1552580275',3,6,'小三子',19232.00,'1552580275','1552580286','N615284252013'),(31,1,100.00,'1552580621',3,6,'小三子',19083.00,'1552583787','1552584254','N057622398659'),(32,1,100.00,'1552588114',2,1,'ecolee',22516.00,'1552588114','','N430326561877'),(33,1,100.00,'1552588117',2,6,'小三子',19014.00,'1552588117','','N415249724932'),(34,1,100.00,'1553023006',3,5,'老实人',10051.40,'1553023006','1553023048','N501069079510'),(35,1,100.00,'1553023174',3,5,'老实人',9981.40,'1553023174','1553023183','N940326607216'),(36,1,100.00,'1553023258',3,5,'老实人',9911.40,'1553023258','1553023267','N541774684817'),(37,1,100.00,'1553023372',3,5,'老实人',9813.40,'1553023372','1553023574','N714303226046'),(38,1,1000.00,'1553023542',2,8,'laoshiren',9408.20,'1553277315','','N734267606382'),(39,1,2000.00,'1553023542',1,0,'',0.00,'','','N734267606382'),(40,1,2000.00,'1553023542',1,0,'',0.00,'','','N734267606382'),(41,1,2000.00,'1553023542',1,0,'',0.00,'','','N734267606382'),(42,1,2000.00,'1553023542',3,3,'QWE',100048.32,'1553274343','1553274457','N734267606382'),(43,1,200.00,'1553023639',3,5,'老实人',9521.40,'1553024230','1553024260','N157589915983'),(44,1,200.00,'1553023639',3,5,'老实人',9715.40,'1553023744','1553023765','N157589915983'),(46,1,600.00,'1553023664',1,0,'',0.00,'','','N059831690294'),(47,1,100.00,'1553024414',3,5,'老实人',9763.40,'1553024414','1553024432','N575047187672'),(48,1,100.00,'1553024722',3,5,'老实人',9693.40,'1553024722','1553024730','N265725369633'),(49,1,100.00,'1553025086',3,5,'老实人',9696.40,'1553025086','1553025100','N334756953356'),(50,1,100.00,'1553025701',3,7,'159',10000.00,'1553025701','1553025710','N230369309681'),(51,1,100.00,'1553025858',3,7,'159',9913.00,'1553025858','1553025866','N752551819731'),(52,1,100.00,'1553079076',3,7,'159',19826.00,'1553079076','1553079104','N981863965027'),(53,1,100.00,'1553079347',3,8,'laoshiren',10000.00,'1553079347','1553079355','N840806303538'),(54,1,100.00,'1553079716',3,8,'laoshiren',9802.00,'1553273563','1553274725','N956577536930'),(55,1,100.00,'1553079733',3,8,'laoshiren',9901.00,'1553079733','1553079740','N332459254645'),(57,1,200.00,'1553275788',2,3,'QWE',98094.32,'1553275788','','N176563257949'),(58,1,100.00,'1553277046',3,8,'laoshiren',9704.30,'1553277046','1553277060','N424416080420'),(59,1,100.00,'1553277075',3,8,'laoshiren',9605.60,'1553277075','1553277085','N633069468348'),(60,1,100.00,'1553277103',3,8,'laoshiren',9506.90,'1553277103','1553277117','N478648876560'),(61,1,6500.00,'1553277196',2,8,'laoshiren',9408.20,'1553277196','','N972048899070'),(62,1,20.00,'1553277663',2,3,'QWE',98094.32,'1553277663','','N976702068181');
-/*!40000 ALTER TABLE `ysk_roborder` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -588,7 +622,7 @@ CREATE TABLE `ysk_user` (
   UNIQUE KEY `mobile` (`mobile`) USING BTREE,
   UNIQUE KEY `account` (`account`) USING BTREE,
   KEY `username` (`username`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -597,44 +631,8 @@ CREATE TABLE `ysk_user` (
 
 LOCK TABLES `ysk_user` WRITE;
 /*!40000 ALTER TABLE `ysk_user` DISABLE KEYS */;
-INSERT INTO `ysk_user` VALUES (1,0,0,0,'13888888888','13888888888','OKjl86re9E','2019-01-22 23:54:16','8afc14645ed885190bfbb0ce23334b6b','f0f',24544.64,1548172456,'1.192.80.97',1,1,'a7stv400qosol9fa8dtke5f714','ecolee','ecolee','ecolee','35256619@qq.com','35256619','123456789123456789','-8570-',1,2,1,1,0.00),(2,1,0,0,'13666666666','13666666666','UCraTwg835r5','小明','a79241f5b4e230240813e81a888a8a39','Bkdx',0.00,1551980908,'127.0.0.1',0,0,'k4i2u4c63mj7v3ij42dda8a0u6',NULL,NULL,NULL,'','','','-8570-1-',1,0,0,1,0.00),(3,1,0,0,'13777777777','13777777777','Jkuym2uHPyej','小七','0c08d9f98165cb5157eb644c67275218','CTTH',98094.32,1552577703,'127.0.0.1',1,0,'d09ospca81r7mcap682q9hp952','WEQ','QWE','QWE','QWE@QQ.COM','QWEQ','QWE','-8570-1-',1,1,1,1,2046.00),(4,3,1,0,'13555555555','13555555555','1BqHpBR6lc4l','2019-03-14 23:36:07','79aae23a0b232d5a48f3f9140b070d17','Yw1u',91.50,1552577767,'127.0.0.1',1,0,'cb1tfehntdlo0mvqaolp5b3gn4','','','','','','','-8570-1-3-',1,1,0,0,0.00),(5,4,3,1,'13333333333','13333333333','1FtxTV65S31s','小四','c4c07dfd3e30999f17839959cd083134','adtl',9609.40,1552577806,'127.0.0.1',1,0,'73c5ivm4k0ilbtovn37gnlsn67','123456','123456','老实人','lao@qq.com','123456','123456','-8570-1-3-4-',1,1,1,1,1758.00),(6,5,4,3,'13222222222','13222222222','I7ctYNAZxk7f','2019-03-14 23:38:01','e2485c9c189a892ed3fd64b1ab2952e5','rBQC',19014.00,1552577881,'127.0.0.1',1,0,'k4i2u4c63mj7v3ij42dda8a0u6','13222222222','13222222222','小三子','22222222@qq.com','22222222','987654321123456878','-8570-1-3-4-5-',1,0,1,1,131.00),(7,1,0,0,'15936999999','15936999999','JmPa399DZS7H','laoshiren','f44220582d4ea61f073acd133f3cfa48','Cx7b',19739.82,1553025464,'222.132.237.55',1,0,'k2pqf2jijva4cludg6fejkgno7','159159','159159','159','159@qq.com','159159','159159','-8570-1-',1,1,1,1,339.00),(8,7,1,0,'14725836999','14725836999','RDUgk4Z7VpGe','2019-03-20 18:52:42','1cdb56dcfdb16b591693be71843fa6db','xqib',9408.21,1553079162,'222.132.237.55',1,0,'ubme69odg0efhuh23bam27nct5','147258','147258','laoshiren','laoshiren1@qq.com','147258','147258','-8570-1-7-',1,0,1,1,608.20);
+INSERT INTO `ysk_user` VALUES (1,0,0,0,'13888888888','13888888888','OKjl86re9E','2019-01-22 23:54:16','b5e409357feba14eb11df0e61ea0c6c8','f0f',24544.64,1548172456,'1.192.80.97',1,1,'71h3j3b8s7vflbc2t662amp3h1','ecolee','ecolee','ecolee','35256619@qq.com','35256619','123456789123456789','-8570-',1,2,1,1,0.00),(2,1,0,0,'13666666666','13666666666','UCraTwg835r5','小明','a79241f5b4e230240813e81a888a8a39','Bkdx',0.00,1551980908,'127.0.0.1',0,0,'k4i2u4c63mj7v3ij42dda8a0u6',NULL,NULL,NULL,'','','','-8570-1-',1,0,0,1,0.00),(3,1,0,0,'13777777777','13777777777','Jkuym2uHPyej','小七','0c08d9f98165cb5157eb644c67275218','CTTH',98094.32,1552577703,'127.0.0.1',1,0,'d09ospca81r7mcap682q9hp952','WEQ','QWE','QWE','QWE@QQ.COM','QWEQ','QWE','-8570-1-',1,1,1,1,2046.00),(4,3,1,0,'13555555555','13555555555','1BqHpBR6lc4l','2019-03-14 23:36:07','79aae23a0b232d5a48f3f9140b070d17','Yw1u',91.50,1552577767,'127.0.0.1',1,0,'cb1tfehntdlo0mvqaolp5b3gn4','','','','','','','-8570-1-3-',1,1,0,0,0.00),(5,4,3,1,'13333333333','13333333333','1FtxTV65S31s','小四','c4c07dfd3e30999f17839959cd083134','adtl',9609.40,1552577806,'127.0.0.1',1,0,'73c5ivm4k0ilbtovn37gnlsn67','123456','123456','老实人','lao@qq.com','123456','123456','-8570-1-3-4-',1,2,1,1,1758.00),(6,5,4,3,'13222222222','13222222222','I7ctYNAZxk7f','2019-03-14 23:38:01','e2485c9c189a892ed3fd64b1ab2952e5','rBQC',19014.00,1552577881,'127.0.0.1',1,0,'k4i2u4c63mj7v3ij42dda8a0u6','13222222222','13222222222','小三子','22222222@qq.com','22222222','987654321123456878','-8570-1-3-4-5-',1,0,1,1,131.00),(7,1,0,0,'15936999999','15936999999','JmPa399DZS7H','laoshiren','f44220582d4ea61f073acd133f3cfa48','Cx7b',19739.82,1553025464,'222.132.237.55',1,0,'k2pqf2jijva4cludg6fejkgno7','159159','159159','159','159@qq.com','159159','159159','-8570-1-',1,1,1,1,339.00),(8,7,1,0,'14725836999','14725836999','RDUgk4Z7VpGe','2019-03-20 18:52:42','1cdb56dcfdb16b591693be71843fa6db','xqib',9408.21,1553079162,'222.132.237.55',1,0,'ubme69odg0efhuh23bam27nct5','147258','147258','laoshiren','laoshiren1@qq.com','147258','147258','-8570-1-7-',1,0,1,1,608.20),(9,5,4,3,'18202221234','18202221234','vr010lCn2k7I','test001','8d1b811e3bff1f5dbb3a055459b7725c','Fs4N',0.00,1567319615,'127.0.0.1',1,0,NULL,NULL,NULL,NULL,'','','','-8570-1-3-4-5-',1,1,0,1,0.00),(10,9,5,4,'19999999990','19999999990','Fm7Jqkv5ejxa','test002','f9e3987ebaad6f2e1dc10da255b9039c','QUsS',0.00,1567319728,'127.0.0.1',1,0,'c5d3udvcvjf2u80b02ihbvcig5','4444444444444','4444444444','111111111','3333333@qq.com','44444444444444','44444444444','-8570-1-3-4-5-9-',1,0,1,1,0.00);
 /*!40000 ALTER TABLE `ysk_user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ysk_userrob`
---
-
-DROP TABLE IF EXISTS `ysk_userrob`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ysk_userrob` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `uid` int(11) NOT NULL COMMENT '会员ID',
-  `class` int(2) NOT NULL COMMENT '支付类别',
-  `price` float(10,2) NOT NULL COMMENT '金额',
-  `yjjc` float(10,2) NOT NULL COMMENT '佣金加成',
-  `umoney` float(10,2) NOT NULL COMMENT '会员余额',
-  `uaccount` varchar(225) NOT NULL COMMENT '会员账号',
-  `uname` varchar(225) NOT NULL COMMENT '会员姓名',
-  `ppid` int(11) NOT NULL COMMENT '匹配的ID号',
-  `status` int(2) NOT NULL COMMENT '状态1等2匹配中3成功',
-  `addtime` varchar(225) NOT NULL COMMENT '添加时间',
-  `pipeitime` varchar(225) NOT NULL COMMENT '匹配成功时间',
-  `finishtime` varchar(225) NOT NULL COMMENT '交易完成时间',
-  `ordernum` varchar(225) NOT NULL COMMENT '订单号',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='会员抢单表前台发起的';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ysk_userrob`
---
-
-LOCK TABLES `ysk_userrob` WRITE;
-/*!40000 ALTER TABLE `ysk_userrob` DISABLE KEYS */;
-INSERT INTO `ysk_userrob` VALUES (10,1,1,100.00,0.01,8862.00,'13888888888','ecolee',23,3,'1552569219','1552569219','1552571384','N672930618375'),(8,1,1,100.00,0.01,8931.00,'13888888888','ecolee',22,3,'1552568979','1552568979','1552569150','N767562952634'),(11,1,1,100.00,0.00,8793.00,'13888888888','ecolee',27,3,'1552571453','1552576307','1552576415','N798089240081'),(12,1,1,300.00,0.01,8723.00,'13888888888','ecolee',15,3,'1552576434','1552576434','1552577228','N320893204964'),(13,6,1,1000.00,0.01,20200.00,'13222222222','小三子',17,3,'1552578995','1552578995','1552579076','N009512186460'),(14,6,1,200.00,0.01,19510.00,'13222222222','小三子',13,3,'1552579204','1552579204','1552579224','N540875533013'),(15,6,1,100.00,0.00,19372.00,'13222222222','小三子',28,3,'1552579479','1552579510','1552579527','N512031793192'),(16,6,1,100.00,0.00,19302.00,'13222222222','小三子',29,3,'1552580122','1552580130','1552580141','N732729092750'),(17,6,1,100.00,0.00,19232.00,'13222222222','小三子',30,3,'1552580254','1552580275','1552580286','N615284252013'),(19,6,1,100.00,0.01,19083.00,'13222222222','小三子',31,3,'1552583787','1552583787','1552584254','N313619393409'),(20,6,1,100.00,0.00,19014.00,'13222222222','小三子',33,4,'1552587078','1552588117','','N415249724932'),(21,1,1,100.00,0.00,22516.00,'13888888888','ecolee',32,2,'1552587127','1552588114','','N430326561877'),(22,5,1,100.00,0.00,10051.40,'13333333333','老实人',34,3,'1553022970','1553023006','1553023048','N501069079510'),(23,5,1,100.00,0.00,9981.40,'13333333333','老实人',35,3,'1553023148','1553023174','1553023183','N940326607216'),(24,5,1,100.00,0.00,9911.40,'13333333333','老实人',36,3,'1553023251','1553023258','1553023267','N541774684817'),(25,5,1,100.00,0.00,9813.40,'13333333333','老实人',37,3,'1553023362','1553023372','1553023574','N714303226046'),(26,5,1,200.00,0.01,9715.40,'13333333333','老实人',44,3,'1553023744','1553023744','1553023765','N230006053547'),(27,5,1,200.00,0.01,9521.40,'13333333333','老实人',43,3,'1553024230','1553024230','1553024260','N975987200801'),(28,5,1,100.00,0.00,9763.40,'13333333333','老实人',47,3,'1553024409','1553024414','1553024432','N575047187672'),(29,5,1,100.00,0.00,9693.40,'13333333333','老实人',48,3,'1553024718','1553024722','1553024730','N265725369633'),(31,7,1,100.00,0.00,10000.00,'15936999999','159',50,3,'1553025694','1553025701','1553025710','N230369309681'),(32,7,1,100.00,0.00,9913.00,'15936999999','159',51,3,'1553025851','1553025858','1553025866','N752551819731'),(33,7,1,100.00,0.00,19826.00,'15936999999','159',52,3,'1553079070','1553079076','1553079104','N981863965027'),(34,8,1,100.00,0.00,10000.00,'14725836999','laoshiren',53,3,'1553079329','1553079347','1553079355','N840806303538'),(35,8,1,100.00,0.00,9901.00,'14725836999','laoshiren',55,3,'1553079709','1553079733','1553079740','N332459254645'),(36,8,1,100.00,0.01,9802.00,'14725836999','laoshiren',54,3,'1553273563','1553273563','1553274725','N930582893397'),(37,3,1,2000.00,0.01,100048.32,'13777777777','QWE',42,3,'1553274343','1553274343','1553274457','N670471036364'),(41,8,1,100.00,0.00,9605.60,'14725836999','laoshiren',59,3,'1553277068','1553277075','1553277085','N633069468348'),(42,8,1,100.00,0.00,9506.90,'14725836999','laoshiren',60,3,'1553277092','1553277103','1553277117','N478648876560'),(44,8,1,1000.00,0.00,9408.20,'14725836999','laoshiren',38,4,'1553277315','1553277315','','N793173919507'),(46,3,1,20.00,0.00,98094.32,'13777777777','QWE',62,4,'1553277647','1553277663','','N976702068181'),(47,3,1,0.00,0.00,98094.32,'13777777777','QWE',0,1,'1553277794','','','N926386449052');
-/*!40000 ALTER TABLE `ysk_userrob` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -667,6 +665,14 @@ LOCK TABLES `ysk_withdraw` WRITE;
 INSERT INTO `ysk_withdraw` VALUES (1,1,'13888888888','张学友','支付宝',1000.00,'1552053596','',1),(2,1,'13888888888','张学友','微信',2000.00,'1552053688','',3),(3,1,'123456','孙悟空','支付宝',8888.00,'1552117731','',3),(4,1,'13689888888','小猪','微信',99999.00,'1552117861','',1);
 /*!40000 ALTER TABLE `ysk_withdraw` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'www.paofen.com'
+--
+
+--
+-- Dumping routines for database 'www.paofen.com'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -677,4 +683,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-27 16:04:53
+-- Dump completed on 2019-10-01 23:11:18
