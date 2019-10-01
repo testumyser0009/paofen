@@ -1,0 +1,104 @@
+[ 2019-09-03T22:12:09+08:00 ] 192.168.254.104 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000194s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001343s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.003719s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005360s ]
+SQL: SHOW COLUMNS FROM `ysk_config` [ RunTime:0.0021s ]
+SQL: SELECT `value`,`tip` FROM `ysk_config` WHERE `name` = 'TOGGLE_WEB_SITE' LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `ysk_user` [ RunTime:0.0027s ]
+SQL: SHOW COLUMNS FROM `ysk_user` [ RunTime:0.0026s ]
+SQL: SELECT `status`,`session_id` FROM `ysk_user` WHERE `userid` = 1 LIMIT 1   [ RunTime:0.0009s ]
+
+[ 2019-09-03T22:12:10+08:00 ] 192.168.254.104 /Login/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000198s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001494s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.003311s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005118s ]
+
+[ 2019-09-03T22:12:10+08:00 ] 192.168.254.104 /Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000161s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001357s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.003381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005010s ]
+SQL: SHOW COLUMNS FROM `ysk_config` [ RunTime:0.0026s ]
+SQL: SELECT `value`,`tip` FROM `ysk_config` WHERE `name` = 'TOGGLE_WEB_SITE' LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000130s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000270s ]
+NOTIC: [8] Undefined variable: account /home/wwwroot/www.paofen.com/APP/Runtime/Cache/Home/6dbce1cb7c0dde839718c0b7332903b5.php 第 22 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014727s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014839s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000685s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000789s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001290s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001404s ]
+
+[ 2019-09-03T23:26:18+08:00 ] 192.168.254.104 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000156s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001367s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.003847s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005491s ]
+SQL: SHOW COLUMNS FROM `ysk_config` [ RunTime:0.0028s ]
+SQL: SELECT `value`,`tip` FROM `ysk_config` WHERE `name` = 'TOGGLE_WEB_SITE' LIMIT 1   [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ysk_user` [ RunTime:0.0034s ]
+SQL: SHOW COLUMNS FROM `ysk_user` [ RunTime:0.0030s ]
+
+[ 2019-09-03T23:26:18+08:00 ] 192.168.254.104 /Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001522s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.004574s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006468s ]
+SQL: SHOW COLUMNS FROM `ysk_config` [ RunTime:0.0023s ]
+SQL: SELECT `value`,`tip` FROM `ysk_config` WHERE `name` = 'TOGGLE_WEB_SITE' LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000135s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000271s ]
+NOTIC: [8] Undefined variable: account /home/wwwroot/www.paofen.com/APP/Runtime/Cache/Home/6dbce1cb7c0dde839718c0b7332903b5.php 第 22 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013666s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013781s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000727s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000829s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001340s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001460s ]
+
+[ 2019-09-03T23:26:30+08:00 ] 192.168.254.104 /Public/libs/lyui/dist/css/lyui.min.css.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000174s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001522s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.004206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.006076s ]
+ERR: Controller can't be loaded:Public
+
+[ 2019-09-03T23:26:30+08:00 ] 192.168.254.104 /Public/libs/lyui/dist/js/lyui.min.js.map
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000162s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001396s ]
+INFO: Run Common\Behavior\CheckLangBehavior [ RunTime:0.004034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005727s ]
+ERR: Controller can't be loaded:Public
+
